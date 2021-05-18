@@ -1,0 +1,30 @@
+{
+  "name": "ebanx-take-home",
+  "version": "1.0.0",
+  "description": "Challenge Ebanx",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoventuri7/ebanx-take-home.git"
+  },
+  "keywords": [
+    "ebanx",
+    "mit"
+  ],
+  "author": "Diego Fernando Venturi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diegoventuri7/ebanx-take-home/issues"
+  },
+  "homepage": "https://github.com/diegoventuri7/ebanx-take-home#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
