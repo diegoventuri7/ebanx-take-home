@@ -8,23 +8,22 @@ module.exports = class Server {
     this.app = express()
   }
 
-  async start () {
-    expressLoader({ app: this.app })
+  start () {
+    return new Promise((resolve, reject) => {
+      expressLoader({ app: this.app })
 
-    this.server = this.app.listen(PORT, err => {
-      if (err) {
-        console.log(err)
-        return
-      }
-      console.log(`Server started on ${PORT} port`)
+      this.server = this.app.listen(PORT, err => {
+        if (err) {
+          reject(err)
+        } else {
+          console.log(`Server started on ${PORT} port`)
+          resolve(this.app)
+        }
+      })
     })
   }
 
   async stop () {
     await this.server.close()
-  }
-
-  getApp () {
-    return this.app
   }
 }
