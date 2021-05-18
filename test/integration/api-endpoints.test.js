@@ -6,24 +6,35 @@ chai.use(chaiHttp)
 
 describe('API-endpoints', function () {
   this.timeout(5000)
-  let app, server
 
   before(async function () {
-    server = new Server()
-    app = await server.start()
+    this.server = new Server()
+    this.app = await this.server.start()
   })
 
   after(async function () {
-    await server.stop()
+    await this.server.stop()
   })
 
   it('Happy day: Check PING endpoint', function (done) {
-    chai.request(app)
+    chai.request(this.app)
       .get('/ping')
       .end(function (err, res) {
         expect(err).is.equal(null)
         expect(res).to.have.status(200)
         expect(res.text).to.be.equal('pong')
+        expect(res.body).to.be.a('object').that.is.empty
+        done()
+      })
+  })
+
+  it('Happy day: Reset state before starting tests', function (done) {
+    chai.request(this.app)
+      .post('/reset')
+      .end(function (err, res) {
+        expect(err).is.equal(null)
+        expect(res).to.have.status(200)
+        expect(res.text).to.be.equal('OK')
         expect(res.body).to.be.a('object').that.is.empty
         done()
       })
