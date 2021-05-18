@@ -5,7 +5,7 @@ module.exports = async ({ app }) => {
   app.use(bodyParser.urlencoded({ limit: '1mb', extended: false }))
   app.use(bodyParser.json({ limit: '1mb' }))
 
-  app.use('/ping', (req, res) => { res.send('pong') })
+  app.use('/ping', (req, res) => { res.json('pong') })
   app.use('', publicRoutes)
 
   app.use((err, req, res, next) => {
