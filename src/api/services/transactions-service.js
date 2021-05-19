@@ -31,6 +31,19 @@ module.exports = new class TransactionsService {
     }
   }
 
+  async balance (query) {
+    const accountId = query && query.account_id ? query.account_id.trim() : null
+    if (!accountId) {
+      throw errorBuilder('Account Id is required')
+    }
+
+    if (transactionsRepository.getByAccountId(accountId).length === 0) {
+      throw errorBuilder(0, 404)
+    }
+
+    return this.getAcccountBalance(accountId)
+  }
+
   getAcccountBalance (accountId) {
     const transactions = transactionsRepository.getByAccountId(accountId)
     return _.sumBy(transactions, (el) => { return el.type === transactionsEnum.TYPE.DEPOSIT ? el.amount : el.amount * -1 })

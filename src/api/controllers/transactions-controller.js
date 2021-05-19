@@ -18,3 +18,13 @@ exports.event = function (req, res) {
     res.json(err.message)
   })
 }
+
+exports.balance = function (req, res) {
+  transactionsService.balance(req.query).then((response) => {
+    res.statusCode = 200
+    res.json(response)
+  }).catch(err => {
+    res.statusCode = err.statusCode
+    res.json(err.message)
+  })
+}
