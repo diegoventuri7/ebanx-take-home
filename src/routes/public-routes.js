@@ -4,5 +4,6 @@ const transactionsController = require('../api/controllers/transactions-controll
 const router = express.Router()
 
 router.post('/reset', transactionsController.reset)
+router.post('/event', transactionsController.event)
 
 module.exports = router
