@@ -33,7 +33,7 @@ describe('API-endpoints', function () {
       .end(function (err, res) {
         expect(err).is.equal(null)
         expect(res).to.have.status(200)
-        expect(res.body).to.be.equal('OK')
+        expect(res.text).to.be.equal('OK')
         done()
       })
   })
