@@ -2,6 +2,7 @@ const _ = require('lodash')
 const transactionsRepository = require('../repositories/transactions-repository.js')
 const transactionsEnum = require('../enums/transactions-enum.js')
 const errorBuilder = require('../utils/error-builder.js')
+const LIMIT = -100
 module.exports = new class TransactionsService {
   async reset () {
     try {
@@ -79,7 +80,8 @@ module.exports = new class TransactionsService {
     }
 
     const balance = this.getAcccountBalance(origin)
-    if (balance <= 0) {
+
+    if ((balance - amount) < LIMIT) {
       throw errorBuilder('There are insufficient funds')
     }
 
